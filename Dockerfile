@@ -7,11 +7,11 @@ COPY package-lock.json ./
 COPY svelte.config.js ./
 COPY src/ ./src/
 
-RUN ls
-RUN ls ./src
+RUN npm ci
 
-RUN npm install
 COPY . ./
+
+RUN ls -l
 RUN npm run build
 
 FROM rust:1.59 as builder
