@@ -6,3 +6,5 @@ node_modules
 .env
 .env.*
 !.env.example
+/izroll-server/static/*
+/izroll-server/target/*

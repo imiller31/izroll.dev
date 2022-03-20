@@ -10,6 +10,11 @@ const config = {
 			fallback: 'index.html',
 			precompress: false
 		}),
+		prerender: {
+			crawl: true,
+			default: true,
+		},
+		trailingSlash: 'always'
 	}
 };
 

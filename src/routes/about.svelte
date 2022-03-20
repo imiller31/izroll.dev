@@ -13,8 +13,8 @@ import TextAnimation from '../lib/components/TextAnimation.svelte';
                 About
             </h1>
             <p>
-                This website serves as a way for me to become reaquainted with my nemisis -- the FrontEnd.
-                Moreover, the fun stuff is in the backend.
+                This website is built with svelte and is being served by a simple Rust backend. 
+                I am using Knative running on AKS!
             </p>
         </TextAnimation>
     </main>
