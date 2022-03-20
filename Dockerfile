@@ -5,13 +5,13 @@ WORKDIR /app
 COPY package.json ./
 COPY package-lock.json ./
 COPY svelte.config.js ./
-COPY src/ ./src/
+COPY src ./src/
 
 RUN npm ci
 
 COPY . ./
 
-RUN cd ./src/routes/ && ls -l ./src/lib/components/
+RUN ls -l ./src/
 RUN npm run build
 
 FROM rust:1.59 as builder
