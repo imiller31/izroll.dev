@@ -11,7 +11,6 @@ RUN npm ci
 
 COPY . ./
 
-RUN ls -l ./src/lib/components/
 RUN npm run build
 
 FROM rust:1.59 as builder

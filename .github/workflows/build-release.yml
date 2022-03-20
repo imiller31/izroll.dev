@@ -10,14 +10,19 @@ jobs:
     runs-on: ubuntu-latest
     environment: Azure
     steps:
-    - name: 'Az CLI login'
+    - 
+      name: Get the version
+      id: get_version
+      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
+    - 
+      name: 'Az CLI login'
       uses: azure/login@v1
       with:
           client-id: ${{ secrets.AZURE_CLIENT_ID }}
           tenant-id: ${{ secrets.AZURE_TENANT_ID }}
           subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
-  
-    - name: 'Run Azure CLI commands'
+    - 
+      name: 'Run Azure CLI commands'
       run: |
           az acr login -n izroll
     -
@@ -32,4 +37,26 @@ jobs:
       with:
         context: .
         push: true
-        tags: izroll.azurecr.io/test:latest
+        tags: izroll.azurecr.io/izroll-server:${{github.ref_name}}
+    - 
+      name: OpenShift Tools Installer
+      uses: redhat-actions/openshift-tools-installer@v1
+      with:
+        source: "github"
+        kn: "latest"
+    - 
+      uses: azure/setup-kubectl@v2.0
+      id: install
+    - 
+      uses: azure/login@v1
+      with:
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+    - 
+      uses: azure/aks-set-context@v2.0
+      with:
+        resource-group: "izrolldev"
+        cluster-name: "krustlet"
+    -
+      run: kn service update izroll-server --image izroll.azurecr.io/izroll-server:${{github.ref_name}}
