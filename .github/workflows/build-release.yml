@@ -19,7 +19,7 @@ jobs:
   
     - name: 'Run Azure CLI commands'
       run: |
-          az acr login -n izroll.dev
+          az acr login -n izroll
     -
       name: Checkout
       uses: actions/checkout@v2
