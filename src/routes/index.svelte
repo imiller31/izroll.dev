@@ -1,6 +1,6 @@
 <script>
     import PageAnimation from '../lib/components/PageAnimation.svelte'
-import TextAnimation from '../lib/components/TextAnimation.svelte';
+    import TextAnimation from '../lib/components/TextAnimation.svelte';
 </script>
 
 <svelte:head>
