@@ -1,5 +1,8 @@
 name: Build and Release Website
-on: [push]
+on: 
+  push:
+    tags:
+      - release*
 
 permissions:
       id-token: write
