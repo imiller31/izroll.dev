@@ -25,7 +25,6 @@ jobs:
       name: 'Run Azure CLI commands'
       run: |
           az acr login -n izroll; \
-          az aks get-credentials -n krustlet -g izrolldev
     -
       name: Checkout
       uses: actions/checkout@v2
@@ -57,7 +56,7 @@ jobs:
     - 
       uses: azure/aks-set-context@v2.0
       with:
-        resource-group: "izrolldev"
+        resource-group: "izroll-dev"
         cluster-name: "krustlet"
     -
       run: kn service update izroll-server --image izroll.azurecr.io/izroll-server:${{github.ref_name}}
