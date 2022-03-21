@@ -48,7 +48,7 @@ jobs:
       uses: azure/setup-kubectl@v2.0
       id: install
     - 
-      uses: azure/login@v1
+      uses: azure/login@v1.4.3
       with:
         client-id: ${{ secrets.AZURE_CLIENT_ID }}
         tenant-id: ${{ secrets.AZURE_TENANT_ID }}
